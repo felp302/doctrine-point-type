@@ -1,6 +1,6 @@
 <?php
 
-namespace Geo\ValueObject;
+namespace Viny;
 
 class Point
 {
