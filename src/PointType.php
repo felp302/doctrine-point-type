@@ -1,11 +1,9 @@
 <?php
 
-namespace Geo\Types;
+namespace Viny;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-
-use Geo\ValueObject\Point;
 
 class PointType extends Type
 {
