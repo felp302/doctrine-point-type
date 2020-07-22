@@ -1,24 +1,15 @@
 <?php
 
-namespace Viny;
+namespace Geo\ValueObject;
 
 class Point
 {
-    /**
-     * @var float
-     */
-    protected $latitude;
-
-    /**
-     * @var float
-     */
-    protected $longitude;
 
     /**
      * @param float $latitude
      * @param float $longitude
      */
-    public function __construct(float $latitude, float $longitude)
+    public function __construct($latitude, $longitude)
     {
         $this->latitude  = $latitude;
         $this->longitude = $longitude;
@@ -27,7 +18,7 @@ class Point
     /**
      * @return float
      */
-    public function getLatitude(): float
+    public function getLatitude()
     {
         return $this->latitude;
     }
@@ -35,16 +26,8 @@ class Point
     /**
      * @return float
      */
-    public function getLongitude(): float
+    public function getLongitude()
     {
         return $this->longitude;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return sprintf('POINT(%f %f)', $this->latitude, $this->longitude);
     }
 }
