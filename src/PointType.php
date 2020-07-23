@@ -14,19 +14,19 @@ class PointType extends Type
         return self::POINT;
     }
 
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
         return 'POINT';
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): ?Point
+    public function convertToPHPValue($value, $platform)
     {
         list($longitude, $latitude) = sscanf($value, 'POINT(%f %f)');
 
         return new Point($latitude, $longitude);
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         if ($value instanceof Point) {
             $value = sprintf('POINT(%F %F)', $value->getLongitude(), $value->getLatitude());
@@ -35,17 +35,17 @@ class PointType extends Type
         return $value;
     }
 
-    public function canRequireSQLConversion(): bool
+    public function canRequireSQLConversion()
     {
         return true;
     }
 
-    public function convertToPHPValueSQL($sqlExpr, AbstractPlatform $platform): string
+    public function convertToPHPValueSQL($sqlExpr, AbstractPlatform $platform)
     {
         return sprintf('AsText(%s)', $sqlExpr);
     }
 
-    public function convertToDatabaseValueSQL($sqlExpr, AbstractPlatform $platform): string
+    public function convertToDatabaseValueSQL($sqlExpr, AbstractPlatform $platform)
     {
         return sprintf('PointFromText(%s)', $sqlExpr);
     }
